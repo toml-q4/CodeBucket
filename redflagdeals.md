@@ -2,6 +2,7 @@
 // find good deals
 
 var tomMaxDiscount = 0;
+var tomDiscountMin = 40;
 $("#description ul li").each(function() {
   var $this = $(this);
   var $a = $this.find('a');
@@ -29,7 +30,7 @@ $("#description ul li").each(function() {
   if (difference > tomMaxDiscount) {
     tomMaxDiscount = difference;
   }
-  if (difference > 40) {
+  if (difference > tomDiscountMin) {
     $this.append(
       '<strong style="background-color:yellow; font-size:2em;">' +
         difference +
@@ -37,7 +38,7 @@ $("#description ul li").each(function() {
     );
   }
 });
-$("#description").prepend('<h1>Max Discount ' + tomMaxDiscount + '</h1>');
+$("#description").prepend('<h1>Max Discount = ' + tomMaxDiscount + '. Min discount = ' + tomDiscountMin + '</h1>');
 
 
 ```
