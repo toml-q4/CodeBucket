@@ -1,6 +1,7 @@
 ```js
 // find good deals
 
+var tomMaxDiscount = 0;
 $("#description ul li").each(function() {
   var $this = $(this);
   var $a = $this.find('a');
@@ -25,6 +26,9 @@ $("#description ul li").each(function() {
     .replace("(regularly $", "")
     .replace(")", "");
   var difference = ((regularPrice - price) * 100 / regularPrice).toFixed(2);
+  if (difference > tomMaxDiscount) {
+    tomMaxDiscount = difference;
+  }
   if (difference > 40) {
     $this.append(
       '<strong style="background-color:yellow; font-size:2em;">' +
@@ -33,6 +37,7 @@ $("#description ul li").each(function() {
     );
   }
 });
+$("#description").prepend('<h1>Max Discount ' + tomMaxDiscount + '</h1>');
 
 
 ```
